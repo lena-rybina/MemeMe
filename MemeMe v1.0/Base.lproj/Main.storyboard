@@ -15,22 +15,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCW-tR-aws">
+                                <rect key="frame" x="37" y="324.5" width="340" height="257"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AS3-Tc-NRs">
                                 <rect key="frame" x="0.0" y="818" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Pick an image" width="427" id="DXV-om-RiO">
+                                    <barButtonItem title="Camera" width="216" id="DPs-en-LIW">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="5zl-wK-1ea"/>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="its-B3-Yfk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Library" width="290" id="DXV-om-RiO">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="yHg-AZ-vdV"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCW-tR-aws">
-                                <rect key="frame" x="37" y="324.5" width="340" height="257"/>
-                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="163-nn-MF6">
+                                <rect key="frame" x="132" y="540" width="151" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldZ-g3-uPO">
+                                <rect key="frame" x="118" y="337" width="178" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qCW-tR-aws" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="67S-z8-a7T"/>
                             <constraint firstItem="qCW-tR-aws" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.28683" id="GzA-0m-bTq"/>
@@ -40,6 +57,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cameraToolBar" destination="DPs-en-LIW" id="Elu-Dp-U7G"/>
                         <outlet property="imagePicker" destination="qCW-tR-aws" id="V5h-LW-yDO"/>
                     </connections>
                 </viewController>
