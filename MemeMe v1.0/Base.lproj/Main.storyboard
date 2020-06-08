@@ -83,6 +83,7 @@
                     </view>
                     <connections>
                         <outlet property="cameraTabbarItem" destination="Ng8-73-pIj" id="Po9-wZ-Oly"/>
+                        <outlet property="containerCenterYLayout" destination="473-fw-n6o" id="Wpr-Vm-3Fc"/>
                         <outlet property="imagePickerImageView" destination="823-1W-cMP" id="rNk-bk-oO5"/>
                         <outlet property="textField1" destination="mRG-wg-A3M" id="Qgd-sz-qlR"/>
                         <outlet property="textField2" destination="rNy-lN-6cO" id="KuA-11-aMb"/>
