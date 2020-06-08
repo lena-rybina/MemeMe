@@ -15,6 +15,7 @@ class ViewController:
     UITextFieldDelegate,
     UITabBarDelegate {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerCenterYLayout: NSLayoutConstraint!
     @IBOutlet weak var imagePickerImageView: UIImageView!
     @IBOutlet weak var cameraTabbarItem: UITabBarItem!
@@ -105,16 +106,23 @@ class ViewController:
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(_ notification:Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if textField2.isFirstResponder {
-            containerCenterYLayout.constant = -getKeyboardHeight(notification)
+            let distanceFromKeyboardTocontainer = containerView.frame.maxY - (view.frame.height - getKeyboardHeight(notification))
+            containerCenterYLayout.constant = -distanceFromKeyboardTocontainer
+            UIView.animate(withDuration: 0.1) {
+                self.view.layoutIfNeeded()
+            }
+        } else if textField1.isFirstResponder {
+            let distanceFromKeyboardTocontainer = containerView.frame.minY - (view.frame.height - getKeyboardHeight(notification)) + textField1.frame.height + 18
+            containerCenterYLayout.constant = -distanceFromKeyboardTocontainer
             UIView.animate(withDuration: 0.1) {
                 self.view.layoutIfNeeded()
             }
         }
     }
    
-    @objc func keyboardWillHide(_ notification:Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         containerCenterYLayout.constant = 0
         UIView.animate(withDuration: 0.1) {
             self.view.layoutIfNeeded()
