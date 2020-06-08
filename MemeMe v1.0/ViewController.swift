@@ -8,63 +8,81 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ViewController:
+    UIViewController,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate,
+    UITextFieldDelegate,
+    UITabBarDelegate {
 
-    @IBOutlet weak var imagePicker: UIImageView!
-    @IBOutlet weak var cameraToolBar: UIBarButtonItem!
+    @IBOutlet weak var imagePickerImageView: UIImageView!
+    @IBOutlet weak var cameraTabbarItem: UITabBarItem!
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
     
+    var memeTextAttributes: [NSAttributedString.Key: Any] = [
+        .foregroundColor: UIColor.white,
+        .strokeColor: UIColor.black,
+        .strokeWidth: -2,
+        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        .backgroundColor: UIColor.clear,
+    ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.textField1.delegate = self
-        self.textField2.delegate = self
-        self.textField1.text = "TOP"
-        self.textField2.text = "BOTTOM"
-    }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    }
+        textField1.delegate = self
+        textField1.borderStyle = .none
+        textField1.defaultTextAttributes = memeTextAttributes
+        textField1.textAlignment = .center
+        
+        textField2.delegate = self
+        textField2.borderStyle = .none
+        textField2.defaultTextAttributes = memeTextAttributes
+        textField2.textAlignment = .center
+        
+        textField1.attributedPlaceholder = NSAttributedString(string: "TOP", attributes: memeTextAttributes)
+        textField2.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes: memeTextAttributes)
     
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-                cameraToolBar.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        cameraTabbarItem.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+          textField.resignFirstResponder()
+          return true;
+      }
     
-    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController ()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present (imagePicker, animated: true, completion: nil)
-
-    }
-    
-    
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-           let imagePicker = UIImagePickerController ()
-           imagePicker.delegate = self
-           imagePicker.sourceType = .camera
-           present (imagePicker, animated: true, completion: nil)
-
-       }
-    
- 
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.imagePicker.image = selectedImage
+            imagePickerImageView.image = selectedImage
         }
         
         dismiss(animated: true, completion: nil)
+    }
+    
+    func tabBar(_ tabBar: UITabBar,
+                didSelect item: UITabBarItem) {
+        guard let title = item.title else { return }
+        switch title {
+        case "Camera":
+            let imagePicker = UIImagePickerController ()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            present (imagePicker, animated: true, completion: nil)
+        case "Gallery":
+            let imagePicker = UIImagePickerController ()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            present (imagePicker, animated: true, completion: nil)
+        default: return
+        }
     }
 }
 

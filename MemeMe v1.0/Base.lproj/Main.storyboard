@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -15,50 +15,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCW-tR-aws">
-                                <rect key="frame" x="37" y="324.5" width="340" height="257"/>
-                            </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AS3-Tc-NRs">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9m-kL-5bW">
+                                <rect key="frame" x="0.0" y="317.5" width="414" height="271"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="823-1W-cMP">
+                                        <rect key="frame" x="0.0" y="-0.5" width="414" height="271"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mRG-wg-A3M">
+                                        <rect key="frame" x="8" y="10" width="398" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="NpA-Hz-NbS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="0.96032816170000002" green="0.97630375619999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNy-lN-6cO">
+                                        <rect key="frame" x="8" y="227" width="398" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="o9L-ws-9S1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96032816170000002" green="0.97630375619999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="rNy-lN-6cO" firstAttribute="leading" secondItem="M9m-kL-5bW" secondAttribute="leading" constant="8" id="3ye-Pb-i9t"/>
+                                    <constraint firstAttribute="width" constant="414" id="APN-fJ-PQI"/>
+                                    <constraint firstAttribute="bottom" secondItem="mRG-wg-A3M" secondAttribute="bottom" constant="227" id="D5z-2I-PnH"/>
+                                    <constraint firstAttribute="trailing" secondItem="mRG-wg-A3M" secondAttribute="trailing" constant="8" id="IQ7-Td-dSo"/>
+                                    <constraint firstAttribute="bottom" secondItem="823-1W-cMP" secondAttribute="bottom" constant="0.5" id="L0g-Ws-ara"/>
+                                    <constraint firstAttribute="trailing" secondItem="rNy-lN-6cO" secondAttribute="trailing" constant="8" id="M1q-bs-qYv"/>
+                                    <constraint firstAttribute="bottom" secondItem="rNy-lN-6cO" secondAttribute="bottom" constant="10" id="SrP-Qj-yBK"/>
+                                    <constraint firstItem="823-1W-cMP" firstAttribute="leading" secondItem="M9m-kL-5bW" secondAttribute="leading" id="UpQ-ks-5ar"/>
+                                    <constraint firstAttribute="height" constant="271" id="jqj-ih-mml"/>
+                                    <constraint firstAttribute="trailing" secondItem="823-1W-cMP" secondAttribute="trailing" id="n4S-sh-jx1"/>
+                                    <constraint firstItem="823-1W-cMP" firstAttribute="top" secondItem="M9m-kL-5bW" secondAttribute="top" constant="-0.5" id="opa-ml-JdT"/>
+                                    <constraint firstItem="mRG-wg-A3M" firstAttribute="leading" secondItem="M9m-kL-5bW" secondAttribute="leading" constant="8" id="sqb-hJ-tCY"/>
+                                </constraints>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqc-oN-QPY">
+                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <barButtonItem title="Camera" width="216" id="DPs-en-LIW">
-                                        <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="its-B3-Yfk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Library" width="290" id="DXV-om-RiO">
-                                        <connections>
-                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="yHg-AZ-vdV"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <tabBarItem title="Camera" image="camera.fill" catalog="system" id="Ng8-73-pIj"/>
+                                    <tabBarItem title="Gallery" image="folder" catalog="system" id="H8P-9P-UVb"/>
                                 </items>
-                            </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="163-nn-MF6">
-                                <rect key="frame" x="132" y="540" width="151" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ldZ-g3-uPO">
-                                <rect key="frame" x="118" y="337" width="178" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nXf-Ys-md0"/>
+                                </connections>
+                            </tabBar>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96389657089199887" green="0.96848052740097046" blue="0.23723797146292713" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="qCW-tR-aws" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="67S-z8-a7T"/>
-                            <constraint firstItem="qCW-tR-aws" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.28683" id="GzA-0m-bTq"/>
-                            <constraint firstItem="qCW-tR-aws" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="afd-j1-KIL"/>
-                            <constraint firstItem="qCW-tR-aws" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.821256" id="yTZ-Lb-VpD"/>
+                            <constraint firstItem="M9m-kL-5bW" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="473-fw-n6o"/>
+                            <constraint firstItem="jqc-oN-QPY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iRg-pR-XVl"/>
+                            <constraint firstAttribute="trailing" secondItem="jqc-oN-QPY" secondAttribute="trailing" id="nhO-HE-Jrl"/>
+                            <constraint firstItem="M9m-kL-5bW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qqT-P8-iX1"/>
+                            <constraint firstItem="jqc-oN-QPY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="34" id="txW-G6-OJj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="cameraToolBar" destination="DPs-en-LIW" id="Elu-Dp-U7G"/>
-                        <outlet property="imagePicker" destination="qCW-tR-aws" id="V5h-LW-yDO"/>
+                        <outlet property="cameraTabbarItem" destination="Ng8-73-pIj" id="Po9-wZ-Oly"/>
+                        <outlet property="imagePickerImageView" destination="823-1W-cMP" id="rNk-bk-oO5"/>
+                        <outlet property="textField1" destination="mRG-wg-A3M" id="Qgd-sz-qlR"/>
+                        <outlet property="textField2" destination="rNy-lN-6cO" id="KuA-11-aMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -66,4 +93,8 @@
             <point key="canvasLocation" x="137.68115942028987" y="99.776785714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera.fill" catalog="system" width="128" height="96"/>
+        <image name="folder" catalog="system" width="128" height="95"/>
+    </resources>
 </document>
