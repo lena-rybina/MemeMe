@@ -16,6 +16,7 @@ class ViewController:
     UITabBarDelegate {
 
     @IBOutlet weak var popoverSource: UIBarButtonItem!
+    @IBOutlet weak var clearAll: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerCenterYLayout: NSLayoutConstraint!
     @IBOutlet weak var imagePickerImageView: UIImageView!
@@ -49,6 +50,8 @@ class ViewController:
         
         textField1.attributedPlaceholder = NSAttributedString(string: "TOP", attributes: memeTextAttributes)
         textField2.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes: memeTextAttributes)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +65,13 @@ class ViewController:
         unsubscribeFromKeyboardNotifications()
     }
     
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+             containerCenterYLayout.constant = 0
+             UIView.animate(withDuration: 0.1) {
+                 self.view.layoutIfNeeded()
+             }
+         }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
           textField.resignFirstResponder()
           return true;
@@ -94,18 +103,6 @@ class ViewController:
         default: return
         }
     }
-   
-    // KeyBoard
-
-    func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
     
     @IBAction func onShareTap(_ sender: Any) {
         let snapshot = containerView.takeScreenshot()
@@ -115,6 +112,25 @@ class ViewController:
         activityView.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
         present(activityView, animated: true, completion: nil)
+    }
+   
+    @IBAction func clearAll(_ sender: Any) {
+        textField1.text = ""
+        textField2.text = ""
+        imagePickerImageView.image = nil
+    }
+    
+    
+    // KeyBoard and Editing
+    
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
