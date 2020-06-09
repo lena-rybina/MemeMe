@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p1f-in-49f">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe_v1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9m-kL-5bW">
-                                <rect key="frame" x="0.0" y="317.5" width="414" height="271"/>
+                                <rect key="frame" x="305" y="562.5" width="414" height="271"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="823-1W-cMP">
                                         <rect key="frame" x="0.0" y="-0.5" width="414" height="271"/>
@@ -60,7 +60,7 @@
                                 </constraints>
                             </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqc-oN-QPY">
-                                <rect key="frame" x="0.0" y="813" width="414" height="83"/>
+                                <rect key="frame" x="0.0" y="1296" width="1024" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="Camera" image="camera.fill" catalog="system" id="Ng8-73-pIj"/>
@@ -77,15 +77,23 @@
                             <constraint firstItem="jqc-oN-QPY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iRg-pR-XVl"/>
                             <constraint firstAttribute="trailing" secondItem="jqc-oN-QPY" secondAttribute="trailing" id="nhO-HE-Jrl"/>
                             <constraint firstItem="M9m-kL-5bW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qqT-P8-iX1"/>
-                            <constraint firstItem="jqc-oN-QPY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="34" id="txW-G6-OJj"/>
+                            <constraint firstItem="jqc-oN-QPY" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" priority="500" id="txW-G6-OJj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="EUW-9x-eRO">
+                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.up" catalog="system" style="plain" id="YrI-FJ-22Z">
+                            <connections>
+                                <action selector="onShareTap:" destination="BYZ-38-t0r" id="AQB-EU-1NR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraTabbarItem" destination="Ng8-73-pIj" id="Po9-wZ-Oly"/>
                         <outlet property="containerCenterYLayout" destination="473-fw-n6o" id="Wpr-Vm-3Fc"/>
                         <outlet property="containerView" destination="M9m-kL-5bW" id="Qw8-Gi-RAZ"/>
                         <outlet property="imagePickerImageView" destination="823-1W-cMP" id="rNk-bk-oO5"/>
+                        <outlet property="popoverSource" destination="YrI-FJ-22Z" id="dYN-7s-1QC"/>
                         <outlet property="textField1" destination="mRG-wg-A3M" id="Qgd-sz-qlR"/>
                         <outlet property="textField2" destination="rNy-lN-6cO" id="KuA-11-aMb"/>
                     </connections>
@@ -94,9 +102,26 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="99.776785714285708"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hOt-FE-PrJ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PaB-Gd-gLV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="p1f-in-49f" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BQY-q9-Yoh">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eke-lK-fZe"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-626" y="100"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="96"/>
         <image name="folder" catalog="system" width="128" height="95"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>

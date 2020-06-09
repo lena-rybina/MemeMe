@@ -15,6 +15,7 @@ class ViewController:
     UITextFieldDelegate,
     UITabBarDelegate {
 
+    @IBOutlet weak var popoverSource: UIBarButtonItem!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerCenterYLayout: NSLayoutConstraint!
     @IBOutlet weak var imagePickerImageView: UIImageView!
@@ -104,6 +105,16 @@ class ViewController:
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @IBAction func onShareTap(_ sender: Any) {
+        let snapshot = containerView.takeScreenshot()
+        
+        let activityView = UIActivityViewController(activityItems: [snapshot],
+                                                    applicationActivities: nil)
+        activityView.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(activityView, animated: true, completion: nil)
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
