@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 extension UIView {
-    func takeScreenshot() -> UIImage {
+    func generateMemedImage() -> UIImage {
 
         // Begin context
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
@@ -19,12 +19,13 @@ extension UIView {
         drawHierarchy(in: self.bounds, afterScreenUpdates: true)
 
         // And finally, get image
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        let memedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        if (image != nil) {
-            return image!
+        if (memedImage != nil) {
+            return memedImage!
         }
         return UIImage()
     }
+    
 }
