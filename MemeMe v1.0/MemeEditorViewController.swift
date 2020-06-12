@@ -21,10 +21,10 @@ class MemeEditorViewController:
     
     @IBOutlet weak var popoverSource: UIBarButtonItem!
     @IBOutlet weak var clearAll: UIBarButtonItem!
-    @IBOutlet weak var containerView: UIView!
-    
-    @IBOutlet weak var imagePickerImageView: UIImageView!
     @IBOutlet weak var cameraTabbarItem: UIBarButtonItem!
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var imagePickerImageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
