@@ -293,13 +293,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3FK-pK-uge">
-                                <rect key="frame" x="16" y="274" width="343" height="274"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3FK-pK-uge">
+                                <rect key="frame" x="16" y="44" width="343" height="734"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="3FK-pK-uge" firstAttribute="centerY" secondItem="Pzk-KA-KTG" secondAttribute="centerY" id="Gsx-Zk-ZRT"/>
+                            <constraint firstItem="3FK-pK-uge" firstAttribute="top" secondItem="Pzk-KA-KTG" secondAttribute="top" id="J6m-VI-JVX"/>
+                            <constraint firstItem="3FK-pK-uge" firstAttribute="leading" secondItem="Cgh-Gf-dfF" secondAttribute="leadingMargin" id="O1s-SU-dck"/>
                             <constraint firstItem="3FK-pK-uge" firstAttribute="centerX" secondItem="Pzk-KA-KTG" secondAttribute="centerX" id="nRo-4v-tl2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pzk-KA-KTG"/>
@@ -310,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gch-dh-uYF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-780" y="-867"/>
+            <point key="canvasLocation" x="-780" y="-867.48768472906409"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hOt-FE-PrJ">

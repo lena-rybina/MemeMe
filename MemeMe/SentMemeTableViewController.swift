@@ -10,12 +10,21 @@ import Foundation
 import UIKit
 
 class SentMemeTableViewController: UITableViewController, UITabBarDelegate {
-    var memes: [Meme] { GlobalConfig.singleton.memeList }
+    var memes: [Meme] = GlobalConfig.singleton.memeList
     
     @IBOutlet weak var newMeme: UIBarButtonItem!
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         memes.count
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        GlobalConfig.singleton.subscribeOnChange({ memeList in
+            self.memes = memeList
+            self.tableView.reloadData()
+        })
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,9 +49,4 @@ class SentMemeTableViewController: UITableViewController, UITabBarDelegate {
         performSegue(withIdentifier: "newMemeSegue",
         sender: self)
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    if segue.identifier == "newMemeSegue",
-//        let _ = segue.destination as? MemeEditorViewController {}
-//
-//    }
 }

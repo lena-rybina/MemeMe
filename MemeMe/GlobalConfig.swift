@@ -11,21 +11,16 @@ import Foundation
 
 class GlobalConfig {
     static let singleton: GlobalConfig = GlobalConfig()
-    var memeList: [Meme] = [Meme(topText: "Lena",
-                                 bottomText: "Is Cool",
-                                 originalImage: UIImage(named: "meme")!,
-                                 memedImage: UIImage(named: "meme")!),
-                            Meme(topText: "Lena",
-                                 bottomText: "Is Cool 2",
-                                 originalImage: UIImage(named: "meme")!,
-                                 memedImage: UIImage(named: "meme")!),
-                            Meme(topText: "Lena",
-                                 bottomText: "Is Cool 3",
-                                 originalImage: UIImage(named: "meme")!,
-                                 memedImage: UIImage(named: "meme")!),
-                            Meme(topText: "Lena",
-                                 bottomText: "Is Cool 4",
-                                 originalImage: UIImage(named: "meme")!,
-                                 memedImage: UIImage(named: "meme")!)
-    ]
+    private var _onMemeListChanged: [(([Meme])->Void)] = []
+    
+    var memeList: [Meme] = [] {
+        didSet {
+            _onMemeListChanged.forEach { $0(memeList) }
+        }
+    }
+    
+    func subscribeOnChange(_ onChanged: (([Meme])->Void)? = nil) {
+        guard let onChanged = onChanged else { return }
+        _onMemeListChanged.append(onChanged)
+    }
 }

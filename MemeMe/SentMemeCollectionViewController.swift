@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SentMemeCollectionViewController: UICollectionViewController {
-    var memes: [Meme] { GlobalConfig.singleton.memeList }
+    var memes: [Meme] = GlobalConfig.singleton.memeList
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var newMeme: UIBarButtonItem!
@@ -30,12 +30,11 @@ class SentMemeCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = flowLayout
         collectionView.collectionViewLayout.invalidateLayout()
         
+        GlobalConfig.singleton.subscribeOnChange({ memeList-> Void in
+            self.memes = memeList
+            self.collectionView.reloadData()
+        })
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
