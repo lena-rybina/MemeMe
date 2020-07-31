@@ -20,7 +20,6 @@ class MemeEditorViewController:
     @IBOutlet weak var bottomLabelBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var popoverSource: UIBarButtonItem!
-    @IBOutlet weak var sentMemes: UIBarButtonItem!
     @IBOutlet weak var clearAll: UIBarButtonItem!
     @IBOutlet weak var cameraTabbarItem: UIBarButtonItem!
     

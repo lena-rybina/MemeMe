@@ -13,12 +13,13 @@ class SentMemeCollectionViewController: UICollectionViewController {
     var memes: [Meme] { GlobalConfig.singleton.memeList }
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var newMeme: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let space:CGFloat = 2.0
-        let width = (view.frame.size.width - space) / 3
+        let width = (view.frame.size.width - 2 * space) / 3
         let height = width
         
         flowLayout.minimumInteritemSpacing = space
@@ -30,6 +31,11 @@ class SentMemeCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout.invalidateLayout()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
@@ -46,4 +52,19 @@ class SentMemeCollectionViewController: UICollectionViewController {
         
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
+        
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier:
+            "MemeDetailViewController") as! MemeDetailViewController
+        detailController.meme = memes[indexPath.row]
+        self.navigationController!.pushViewController(detailController, animated: true)
+    }
+    
+       @IBAction func createNewMeme(_ sender: Any) {
+         performSegue(withIdentifier: "newMemeSegue",
+         sender: self)
+     }
+    
+    
 }

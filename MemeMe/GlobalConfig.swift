@@ -2,7 +2,7 @@
 //  GlobalConfig.swift
 //  Mememe
 //
-//  Created by Vlad Zagorodnyuk on 7/30/20.
+//  Created by Elena Rybina on 7/30/20.
 //  Copyright © 2020 Elena Rybina. All rights reserved.
 //
 
