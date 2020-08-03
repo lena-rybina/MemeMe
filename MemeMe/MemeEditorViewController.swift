@@ -19,6 +19,7 @@ class MemeEditorViewController:
     @IBOutlet weak var bottomLabelBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var popoverSource: UIBarButtonItem!
+    @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var clearAll: UIBarButtonItem!
     @IBOutlet weak var cameraTabbarItem: UIBarButtonItem!
     
@@ -144,7 +145,7 @@ class MemeEditorViewController:
         GlobalConfig.singleton.memeList.append(meme)
     }
     
-    // Start over
+    // Start over and cancel
     
     @IBAction func clearAll(_ sender: Any) {
         topTextField.text = ""
@@ -152,6 +153,10 @@ class MemeEditorViewController:
         imagePickerImageView.image = nil
     }
     
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
     
     // KeyBoard and Editing
     

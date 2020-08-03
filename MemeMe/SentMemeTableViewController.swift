@@ -27,7 +27,7 @@ class SentMemeTableViewController: UITableViewController, UITabBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SentMemeCollectionViewCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(SentMemeCollectionViewCell.self)")!
         let meme = memes[indexPath.row]
         cell.imageView?.image = meme.memedImage
         cell.textLabel?.text = meme.topText

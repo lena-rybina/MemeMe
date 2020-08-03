@@ -10,18 +10,19 @@ import UIKit
 import Foundation
 
 class GlobalConfig {
+    private let memeListPlistKey = "MemeList"
     static let singleton: GlobalConfig = GlobalConfig()
     private var _onMemeListChanged: [(([Meme])->Void)] = []
     
     var memeList: [Meme] {
         set {
             guard let encodedMemeList = try? PropertyListEncoder().encode(newValue) else { return }
-            UserDefaults.standard.set(encodedMemeList, forKey: "MemeList")
+            UserDefaults.standard.set(encodedMemeList, forKey: memeListPlistKey)
             
             _onMemeListChanged.forEach { $0(memeList) }
         }
         get {
-            guard let memeListData = UserDefaults.standard.data(forKey: "MemeList"),
+            guard let memeListData = UserDefaults.standard.data(forKey: memeListPlistKey),
                 let decodedMemeList = try? PropertyListDecoder().decode([Meme].self,
                                                                         from: memeListData) else { return [] }
             return decodedMemeList
