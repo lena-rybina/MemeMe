@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SentMemeCollectionViewController: UICollectionViewController {
-    var memes: [Meme] = GlobalConfig.singleton.memeList
+    var memes: [Meme] { GlobalConfig.singleton.memeList }
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var newMeme: UIBarButtonItem!
@@ -18,8 +18,27 @@ class SentMemeCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateCollectionLayout(for: view.frame.size)
+        
+        GlobalConfig.singleton.subscribeOnChange({ memeList-> Void in
+            self.collectionView.reloadData()
+        })
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int {
+        memes.count
+    }
+    
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        updateCollectionLayout(for: size)
+    }
+    
+    
+    private func updateCollectionLayout(for size: CGSize) {
         let space:CGFloat = 2.0
-        let width = (view.frame.size.width - 2 * space) / 3
+        let width = (size.width - 2 * space) / 3
         let height = width
         
         flowLayout.minimumInteritemSpacing = space
@@ -29,16 +48,6 @@ class SentMemeCollectionViewController: UICollectionViewController {
         
         collectionView.collectionViewLayout = flowLayout
         collectionView.collectionViewLayout.invalidateLayout()
-        
-        GlobalConfig.singleton.subscribeOnChange({ memeList-> Void in
-            self.memes = memeList
-            self.collectionView.reloadData()
-        })
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView,
-                                 numberOfItemsInSection section: Int) -> Int {
-        memes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,

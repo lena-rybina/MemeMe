@@ -13,12 +13,21 @@ class GlobalConfig {
     static let singleton: GlobalConfig = GlobalConfig()
     private var _onMemeListChanged: [(([Meme])->Void)] = []
     
-    var memeList: [Meme] = [] {
-        didSet {
+    var memeList: [Meme] {
+        set {
+            guard let encodedMemeList = try? PropertyListEncoder().encode(newValue) else { return }
+            UserDefaults.standard.set(encodedMemeList, forKey: "MemeList")
+            
             _onMemeListChanged.forEach { $0(memeList) }
         }
+        get {
+            guard let memeListData = UserDefaults.standard.data(forKey: "MemeList"),
+                let decodedMemeList = try? PropertyListDecoder().decode([Meme].self,
+                                                                        from: memeListData) else { return [] }
+            return decodedMemeList
+        }
     }
-    
+        
     func subscribeOnChange(_ onChanged: (([Meme])->Void)? = nil) {
         guard let onChanged = onChanged else { return }
         _onMemeListChanged.append(onChanged)

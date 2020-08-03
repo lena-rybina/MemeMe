@@ -15,7 +15,6 @@ class MemeEditorViewController:
     UITextFieldDelegate,
     UITabBarDelegate {
 
-    
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var bottomLabelBottomConstraint: NSLayoutConstraint!
     
@@ -45,12 +44,12 @@ class MemeEditorViewController:
         textField.defaultTextAttributes = memeTextAttributes
         textField.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                              attributes: memeTextAttributes)
-         textField.textAlignment = .center
+        textField.textAlignment = .center
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         subscribeToKeyboardNotifications()
         
         memeTextStyle(topTextField,
@@ -70,9 +69,12 @@ class MemeEditorViewController:
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-          textField.resignFirstResponder()
-          return true;
-      }
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+    
+    // Pick an image
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -102,6 +104,9 @@ class MemeEditorViewController:
         }
     }
     
+    
+    // Share a meme
+    
     @IBAction func onShareTap(_ sender: Any) {
         snapshotImage = containerView.generateMemedImage()
         let activityView = UIActivityViewController(activityItems: [snapshotImage],
@@ -115,19 +120,32 @@ class MemeEditorViewController:
         present(activityView, animated: true, completion: nil)
     }
     
+    
+    // Save a meme
+    
     func save() {
         guard let topText = topTextField.text,
-            let bottomText = bottomTextField.text,
-            let originalImage = imagePickerImageView.image else { return }
+            let bottomText = bottomTextField.text else { return }
         
-        let meme = Meme(topText: topText,
-                        bottomText: bottomText,
-                        originalImage: originalImage,
-                        memedImage: snapshotImage)
+        let meme = Meme(memeId: UUID().uuidString,
+                        topText: topText,
+                        bottomText: bottomText)
+        
+        store(meme: meme,
+              withImage: snapshotImage)
+    }
+    
+    private func store(meme: Meme,
+                       withImage image: UIImage) {
+        guard let path = SavingManager.generateFilePath(forKey: meme.memeId),
+            let savingPngRepresentation = image.pngData(),
+            let _ = try? savingPngRepresentation.write(to: path) else { return }
         
         GlobalConfig.singleton.memeList.append(meme)
     }
-   
+    
+    // Start over
+    
     @IBAction func clearAll(_ sender: Any) {
         topTextField.text = ""
         bottomTextField.text = ""
@@ -154,14 +172,14 @@ class MemeEditorViewController:
             self.view.layoutIfNeeded()
         }
     }
-   
+    
     @objc func keyboardWillHide(_ notification: Notification) {
         bottomLabelBottomConstraint.constant = 10
         UIView.animate(withDuration: 0.1) {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect

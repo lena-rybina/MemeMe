@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SentMemeTableViewController: UITableViewController, UITabBarDelegate {
-    var memes: [Meme] = GlobalConfig.singleton.memeList
+    var memes: [Meme] { GlobalConfig.singleton.memeList }
     
     @IBOutlet weak var newMeme: UIBarButtonItem!
     
@@ -22,7 +22,6 @@ class SentMemeTableViewController: UITableViewController, UITabBarDelegate {
         super.viewDidLoad()
         
         GlobalConfig.singleton.subscribeOnChange({ memeList in
-            self.memes = memeList
             self.tableView.reloadData()
         })
     }

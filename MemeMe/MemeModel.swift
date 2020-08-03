@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 
-struct Meme {
-    var topText : String
-    var bottomText : String
-    var originalImage : UIImage
-    var memedImage : UIImage
+struct Meme: Codable {
+    var memeId: String
+    
+    let topText : String
+    let bottomText : String
+    
+    var memedImage: UIImage? {
+        guard let filePath = SavingManager.generateFilePath(forKey: memeId),
+            let fileData = FileManager.default.contents(atPath: filePath.path) else { return nil }
+        
+        return UIImage(data: fileData)
+    }
 }
-
-
-
